@@ -1,0 +1,147 @@
+@import '~style/helpers';
+
+
+.container {
+	display: flex;
+	flex-direction: column;
+	//background-image: url('../../assets/backgrounds/clear-iphone.jpg');
+	background-color: #8fff80;
+	color: #fff;
+	width: 414px;
+	height: 736px;
+	text-align: center;
+	padding-top: 80px;
+	margin: 0 auto;
+}
+.header {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+.details {
+	flex: 4;
+}
+.city {
+	flex: 1;
+	font-size: 1.7em;
+	font-weight: 400;
+}
+.conditions {
+	flex: 1;
+	font-size: 1em;
+}
+.conditionText {
+	display: flex;
+	margin-top: 100px;
+	flex-direction: column;
+}
+.pt {
+	display: flex;
+	margin-top: 60px;
+	//flex-direction: column;
+	//flex: 1;
+	//text-align: center;
+}
+.precipitation {
+	flex: 2;
+	//margin-top: 60px;
+	margin-bottom: 30px;
+	color: #fff;
+	//text-align: left;
+	margin-right: 70px;
+	font-size: 3.5em;
+	font-weight: 300;
+	letter-spacing: -5px;
+}
+.temperature {
+	flex: 2;
+	//margin-top: 60px;
+	margin-bottom: 30px;
+	color: #fff;
+	//text-align: right;
+	margin-left: 70px;
+	font-size: 3.5em;
+	font-weight: 300;
+	letter-spacing: -7px;
+}
+.whf {
+	display: flex;
+	margin-top: 160px;
+	flex-direction: row;
+}
+.windSpeed {
+	flex: 2;
+	//margin-top: 60px;
+	margin-bottom: 30px;
+	color: #fff;
+	//text-align: right;
+	margin-left: 0px;
+	font-size: 3.5em;
+	font-weight: 300;
+	letter-spacing: -7px;
+}
+.humidity {
+	flex: 2;
+	//margin-top: 60px;
+	margin-bottom: 30px;
+	color: #fff;
+	//text-align: right;
+	//margin-left: 70px;
+	font-size: 3.5em;
+	font-weight: 300;
+	letter-spacing: -7px;
+}
+.feelsLike {
+	flex: 2;
+	//margin-top: 60px;
+	margin-bottom: 30px;
+	color: #fff;
+	//text-align: right;
+	margin-right: 0px;
+	font-size: 3.5em;
+	font-weight: 300;
+	letter-spacing: -7px;
+}
+.filled:after {
+	content: "°";
+	margin: 0 0 0 1rem;
+	font-size: 0.5em;
+	font-weight: 100;
+	display: inline-block;
+	padding-top: 10px;
+	vertical-align: top;
+}
+
+
+
+////remove later
+.button2_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 90px;
+
+	// background-image: url('../../assets/backgrounds/clear-iphone.jpg');
+	// background-color: #8fff80;
+	// color: #fff;
+	// width: 50px;
+	// height: 50px;
+
+}
+.button2_container button {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  display: block;
+  background: #6DA4CC;
+  border: 1px solid #fff;
+  color: #fff;
+  font-weight: 300;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 20px;
+}
+.button2_container button:hover {
+  background: #fff;
+  color: #6DA4CC;
+  border: 1px solid transparent;
+}
