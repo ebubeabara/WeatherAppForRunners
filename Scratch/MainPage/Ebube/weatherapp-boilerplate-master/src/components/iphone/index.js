@@ -18,13 +18,13 @@ import style_day5Button from '../day5Button';
 import style_day6Button from '../day6Button';
 import style_day7Button from '../day7Button';
 //importing days of the week button Component
-import day1Button from '../day1Button';
-import day2Button from '../day2Button';
-import day3Button from '../day3Button';
-import day4Button from '../day4Button';
-import day5Button from '../day5Button';
-import day6Button from '../day6Button';
-import day7Button from '../day7Button';
+import ButtonDay1 from '../day1Button';
+import ButtonDay2 from '../day2Button';
+import ButtonDay3 from '../day3Button';
+import ButtonDay4 from '../day4Button';
+import ButtonDay5 from '../day5Button';
+import ButtonDay6 from '../day6Button';
+import ButtonDay7 from '../day7Button';
 ////
 
 export default class Iphone extends Component {
@@ -36,23 +36,8 @@ export default class Iphone extends Component {
 		// button display state
 		this.setState({
 			display: true,
-			dayOfWeekButtonDay1: true,
-			dayOfWeekButtonDay2: false,
-			dayOfWeekButtonDay3: true,
-			dayOfWeekButtonDay4: true,
-			dayOfWeekButtonDay5: true,
-			dayOfWeekButtonDay6: true,
-			dayOfWeekButtonDay7: true
+			dayOfWeekButtonDay2: false
 		});
-
-		// //days of week button display state
-		// this.state.dayOfWeekButtonDay1 = true;
-		// this.state.dayOfWeekButtonDay2 = true;
-		// this.state.dayOfWeekButtonDay3 = true;
-		// this.state.dayOfWeekButtonDay4 = true;
-		// this.state.dayOfWeekButtonDay5 = true;
-		// this.state.dayOfWeekButtonDay6 = true;
-		// this.state.dayOfWeekButtonDay7 = true;
 
 
 	}
@@ -66,37 +51,26 @@ export default class Iphone extends Component {
 		return (
 			<div class={style.container}>
 				<div class={style.header}>
-					<div class={style.city}>{this.state.currentLocation}</div>
-					<div>
-						<div></div>
-
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
+					<div class={style.city}>{this.state.displayLocation}</div>
+					<div class={style.button2_container}>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay1 class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay2 class={ style_iphone.button } clickFunction={ this.fetchForecastDay2WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay3 class={ style_iphone.button } clickFunction={ this.fetchForecastDay3WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay4 class={ style_iphone.button } clickFunction={ this.fetchForecastDay4WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay5 class={ style_iphone.button } clickFunction={ this.fetchForecastDay5WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay6 class={ style_iphone.button } clickFunction={ this.fetchForecastDay6WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay7 class={ style_iphone.button } clickFunction={ this.fetchForecastDay7WeatherData }/ > : null }</span>
 					</div>
-
+					<div class={style.days}>{this.state.day}</div>
 					<div class={style.pt}>
-						<div class={style.precipitation}>{this.state.currentPrecipitation_in}</div>
-						<div class={style.temperature}>{this.state.currentTemperature}</div>
+						<div class={style.precipitation}>{this.state.displayPrecipitation_mm}</div>
+						<div class={style.temperature}>{this.state.displayTemperature}</div>
 					</div>
-					<div class={style.conditionText}>{this.state.currentConditionText}</div>
+					<div class={style.conditionText}>{this.state.displayConditionText}</div>
 					<div class={style.whf}>
-						<div class={style.windSpeed}>{this.state.currentWindSpeed}</div>
-						<div class={style.humidity}>{this.state.currentHumidity}</div>
-						<div class={style.feelsLike}>{this.state.currentFeelsLike}</div>
-					</div>
-
-
-					<div class={style.pt}>
-						<div class={style.precipitation}>{this.state.day2Precipitation_in}</div>
-						<div class={style.temperature}>{this.state.day2AvgTemperature}</div>
-					</div>
-					<div class={style.conditionText}>{this.state.day2Date_epoch}</div>
-					<div class={style.whf}>
-						<div class={style.windSpeed}>{this.state.day2MaxWindSpeed}</div>
-						<div class={style.humidity}>{this.state.day2AvgHumidity}</div>
+						<div class={style.windSpeed}>{this.state.displayWindSpeed}</div>
+						<div class={style.humidity}>{this.state.displayHumidity}</div>
+						<div class={style.feelsLike}>{this.state.displayFeelsLike}</div>
 					</div>
 
 
@@ -106,11 +80,9 @@ export default class Iphone extends Component {
 					</div>
 				</div>
 
-
-
- 				{ this.state.dayOfWeekButtonDay2 ? <Button class={ style_iphone.button } clickFunction={ this.fetchForecastDay2WeatherData }/ > : null }
-
-
+				<div>
+					<span></span>
+				</div>
 
 				<div class= { style_iphone.container }>
 	 				{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }
@@ -143,25 +115,35 @@ export default class Iphone extends Component {
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay()];
 
+
+
+
 		var location = parsed_json['location']['name'];
-		var precipitation_in = parsed_json['current']['precip_in'];
+		var precipitation_mm = parsed_json['current']['precip_mm'];
 		var conditionText = parsed_json['current']['condition']['text'];
 		var conditionIcon = parsed_json['current']['condition']['icon'];
 		var temperature = parsed_json['current']['temp_c'];
 		var windSpeed = parsed_json['current']['wind_mph'];
 		var humidity = parsed_json['current']['humidity'];
 		var feelsLike = parsed_json['current']['feelslike_c'];
+		var date = parsed_json['current']['last_updated'];
+		var date_epoch = parsed_json['current']['last_updated_epoch'];
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day: d,
-			currentLocation: location,
-			currentPrecipitation_in: precipitation_in,
-			currentConditionText: conditionText,
-			currentConditionIcon: conditionIcon,
-			currentTemperature: temperature + " " + String.fromCharCode(176),
-			currentWindSpeed: windSpeed,
-			currentHumidity: humidity,
-			currentFeelsLike: feelsLike + String.fromCharCode(176),
+			day: d + " " + ddmmyyyy,
+			displayLocation: location,
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: temperature + " " + String.fromCharCode(176),
+			displayWindSpeed: windSpeed,
+			displayHumidity: humidity,
+			displayFeelsLike: feelsLike + String.fromCharCode(176),
 			//dayOfWeekButtonDay2: true
 		});
 	}
@@ -187,7 +169,7 @@ export default class Iphone extends Component {
 	parseForecastDay2WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 1];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][1]['day']['maxtemp_c'];
@@ -197,23 +179,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][1]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][1]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][1]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][1]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][1]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][1]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][1]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
-		console.log("I am Ebube");
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day2: d,
-			day2MaxTemperature: maxTemperature,
-			day2MinTemperature: minTemperature,
-			day2AvgTemperature: avgTemperature,
-			day2MaxWindSpeed: maxWindSpeed,
-			day2Precipitation_mm: precipitation_mm,
-			day2Precipitation_in: precipitation_in,
-			day2AvgHumidity: avgHumidity,
-			day2Date: date,
-			day2Date_epoch: date_epoch,
-			//dayOfWeekButtonDay2: true
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 
@@ -234,7 +218,7 @@ export default class Iphone extends Component {
 	parseForecastDay3WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 2];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][2]['day']['maxtemp_c'];
@@ -244,21 +228,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][2]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][2]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][2]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][2]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][2]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][2]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][2]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day3: d,
-			day3MaxTemperature: maxTemperature,
-			day3MinTemperature: minTemperature,
-			day3AvgTemperature: avgTemperature,
-			day3MaxWindSpeed: maxWindSpeed,
-			day3Precipitation_mm: precipitation_mm,
-			day3Precipitation_in: precipitation_in,
-			day3AvgHumidity: avgHumidity,
-			day3Date: date,
-			day3Date_epoch: date_epoch
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 
@@ -279,7 +267,7 @@ export default class Iphone extends Component {
 	parseForecastDay4WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 3];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][3]['day']['maxtemp_c'];
@@ -289,21 +277,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][3]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][3]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][3]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][3]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][3]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][3]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][3]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day4: d,
-			day4MaxTemperature: maxTemperature,
-			day4MinTemperature: minTemperature,
-			day4AvgTemperature: avgTemperature,
-			day4MaxWindSpeed: maxWindSpeed,
-			day4Precipitation_mm: precipitation_mm,
-			day4Precipitation_in: precipitation_in,
-			day4AvgHumidity: avgHumidity,
-			day4Date: date,
-			day4Date_epoch: date_epoch
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 
@@ -334,21 +326,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][4]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][4]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][4]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][4]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][4]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][4]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][4]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day5: d,
-			day5MaxTemperature: maxTemperature,
-			day5MinTemperature: minTemperature,
-			day5AvgTemperature: avgTemperature,
-			day5MaxWindSpeed: maxWindSpeed,
-			day5Precipitation_mm: precipitation_mm,
-			day5Precipitation_in: precipitation_in,
-			day5AvgHumidity: avgHumidity,
-			day5Date: date,
-			day5Date_epoch: date_epoch
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 
@@ -369,7 +365,7 @@ export default class Iphone extends Component {
 	parseForecastDay6WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 5];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][5]['day']['maxtemp_c'];
@@ -379,21 +375,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][5]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][5]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][5]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][5]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][5]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][5]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][5]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day6: d,
-			day6MaxTemperature: maxTemperature,
-			day6MinTemperature: minTemperature,
-			day6AvgTemperature: avgTemperature,
-			day6MaxWindSpeed: maxWindSpeed,
-			day6Precipitation_mm: precipitation_mm,
-			day6Precipitation_in: precipitation_in,
-			day6AvgHumidity: avgHumidity,
-			day6Date: date,
-			day6Date_epoch: date_epoch
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 
@@ -411,11 +411,12 @@ export default class Iphone extends Component {
 		this.setState({display: false});
 	}
 
-	parseForecastDay3WeatherDataResponse = (parsed_json) =>
+	parseForecastDay7WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 6];
+
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][6]['day']['maxtemp_c'];
 		var minTemperature = parsed_json['forecast']['forecastday'][6]['day']['mintemp_c'];
@@ -424,21 +425,25 @@ export default class Iphone extends Component {
 		var precipitation_mm = parsed_json['forecast']['forecastday'][6]['day']['totalprecip_mm'];
 		var precipitation_in = parsed_json['forecast']['forecastday'][6]['day']['totalprecip_in'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][6]['day']['avghumidity'];
+		var conditionText = parsed_json['forecast']['forecastday'][6]['day']['condition']['text'];
+		var conditionIcon = parsed_json['forecast']['forecastday'][6]['day']['condition']['icon'];
 		var date = parsed_json['forecast']['forecastday'][6]['date'];
 		var date_epoch = parsed_json['forecast']['forecastday'][6]['date_epoch'];
-		console.log("Date_Epoch: " + date_epoch);
+
+		var dd = date.substring(8,10);
+		var mm = date.substring(5,7);
+		var yyyy = date.substring(0,4);
+		var ddmmyyyy = dd + "-" + mm + "-" + yyyy;
 
 		this.setState({
-			day7: d,
-			day7MaxTemperature: maxTemperature,
-			day7MinTemperature: minTemperature,
-			day7AvgTemperature: avgTemperature,
-			day7MaxWindSpeed: maxWindSpeed,
-			day7Precipitation_mm: precipitation_mm,
-			day7Precipitation_in: precipitation_in,
-			day7AvgHumidity: avgHumidity,
-			day7Date: date,
-			day7Date_epoch: date_epoch
+			displayPrecipitation_mm: precipitation_mm,
+			displayConditionText: conditionText,
+			displayConditionIcon: conditionIcon,
+			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayWindSpeed: maxWindSpeed,
+			displayHumidity: avgHumidity,
+			displayFeelsLike: "",
+			day: d + " " + ddmmyyyy
 		})
 	}
 }

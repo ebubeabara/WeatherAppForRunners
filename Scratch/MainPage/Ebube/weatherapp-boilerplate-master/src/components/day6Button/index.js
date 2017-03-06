@@ -1,7 +1,7 @@
 // import preact
 import { h, render, Component } from 'preact';
 
-export default class day6Button extends Component {
+export default class ButtonDay6 extends Component {
 
 	// rendering a function when the button is clicked
 	render({clickFunction}) {
