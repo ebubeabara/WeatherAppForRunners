@@ -1,5 +1,6 @@
 // import preact
 import { h, render, Component } from 'preact';
+import day6ButtonStyle from '../day6Button/day6ButtonStyle';
 
 export default class ButtonDay6 extends Component {
 
@@ -11,10 +12,8 @@ export default class ButtonDay6 extends Component {
 			}
 		}
 		return (
-			<div>
-				<button onClick={clickFunction}>
-					6
-				</button>
+			<div class={day6ButtonStyle.container}>
+				<img onClick={clickFunction}/>
 			</div>
 		);
 	}

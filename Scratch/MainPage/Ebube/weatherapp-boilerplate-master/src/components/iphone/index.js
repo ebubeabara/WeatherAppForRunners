@@ -10,7 +10,7 @@ import Button from '../button';
 
 ////
 //importing days of the week button style sheet
-import style_day1Button from '../day1Button';
+import day1ButtonStyle from '../day1Button/day1ButtonStyle';
 import style_day2Button from '../day2Button';
 import style_day3Button from '../day3Button';
 import style_day4Button from '../day4Button';
@@ -36,7 +36,13 @@ export default class Iphone extends Component {
 		// button display state
 		this.setState({
 			display: true,
-			dayOfWeekButtonDay2: false
+			dayOfWeekButtonDay1: false,
+			dayOfWeekButtonDay2: false,
+			dayOfWeekButtonDay3: false,
+			dayOfWeekButtonDay4: false,
+			dayOfWeekButtonDay5: false,
+			dayOfWeekButtonDay6: false,
+			dayOfWeekButtonDay7: false
 		});
 
 
@@ -53,13 +59,13 @@ export default class Iphone extends Component {
 				<div class={style.header}>
 					<div class={style.city}>{this.state.displayLocation}</div>
 					<div class={style.button2_container}>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay1 class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay2 class={ style_iphone.button } clickFunction={ this.fetchForecastDay2WeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay3 class={ style_iphone.button } clickFunction={ this.fetchForecastDay3WeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay4 class={ style_iphone.button } clickFunction={ this.fetchForecastDay4WeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay5 class={ style_iphone.button } clickFunction={ this.fetchForecastDay5WeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay6 class={ style_iphone.button } clickFunction={ this.fetchForecastDay6WeatherData }/ > : null }</span>
-						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay7 class={ style_iphone.button } clickFunction={ this.fetchForecastDay7WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay1 ? <ButtonDay1 clickFunction={ this.fetchCurrentWeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay2 ? <ButtonDay2 clickFunction={ this.fetchForecastDay2WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay3 ? <ButtonDay3 clickFunction={ this.fetchForecastDay3WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay4 ? <ButtonDay4 clickFunction={ this.fetchForecastDay4WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay5 ? <ButtonDay5 clickFunction={ this.fetchForecastDay5WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay6 ? <ButtonDay6 clickFunction={ this.fetchForecastDay6WeatherData }/ > : null }</span>
+						<span>{ this.state.dayOfWeekButtonDay7 ? <ButtonDay7 clickFunction={ this.fetchForecastDay7WeatherData }/ > : null }</span>
 					</div>
 					<div class={style.days}>{this.state.day}</div>
 					<div class={style.pt}>
@@ -105,7 +111,13 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			dayOfWeekButtonDay2: true
+			dayOfWeekButtonDay1: true,
+			dayOfWeekButtonDay2: true,
+			dayOfWeekButtonDay3: true,
+			dayOfWeekButtonDay4: true,
+			dayOfWeekButtonDay5: true,
+			dayOfWeekButtonDay6: true,
+			dayOfWeekButtonDay7: true
 		});
 	}
 
@@ -478,22 +490,3 @@ function error(err)
 /*
 CALCULATE DISTANCE BETWEEN TWO POINTS USING LATITUDE AND LONGITUDE
 */
-
-
-
-
-// return (
-// 	<div class={ style.container }>
-// 		<div class={ style.header }>
-// 			<div class={ style.city }>{ this.state.currentLocation }</div>
-// 			<div class={ style.conditions }>{ this.state.currentTemperature }</div>
-// 			<div class={ style.conditions }>{ this.state.name }</div>
-// 			<div>{this.fetchCurrentWeatherData}</div>
-// 			<span class={ tempStyles }>{ this.state.temp }</span>
-// 		</div>
-// 		<div class={ style.details }></div>
-// 		<div class= { style_iphone.container }>
-// 			{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }
-// 		</div>
-// 	</div>
-// );
