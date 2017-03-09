@@ -1,8 +1,8 @@
 // import preact
 import { h, render, Component } from 'preact';
-import cloudyIconStyle from '../cloudyIconStyle';
+import sunnyIconStyle from '../sunnyIconStyle';
 
-export default class ButtonCloudy extends Component {
+export default class ButtonSunny extends Component {
 
 	// rendering a function when the button is clicked
 	render({clickFunction}) {
@@ -12,7 +12,7 @@ export default class ButtonCloudy extends Component {
 			}
 		}
 		return (
-			<div class={cloudyIconStyle.container}>
+			<div class={sunnyIconStyle.container}>
 				<img onClick={clickFunction}/>
 			</div>
 		);

@@ -8,6 +8,12 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 
+//
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
+//
+
 ////
 //importing days of the week button style sheet
 import day1ButtonStyle from '../day1Button/day1ButtonStyle';
@@ -28,7 +34,17 @@ import ButtonDay7 from '../day7Button';
 
 import ButtonWindSpeed from '../icons/windSpeedIcon';
 import ButtonFeelsLike from '../icons/feelsLikeIcon';
+import ButtonFeelsLikeText from '../icons/feelsLikeTextIcon';
 import ButtonHumidity from '../icons/humidityIcon';
+
+import ButtonCloudy from '../icons/cloudyIcon';
+import ButtonRainy from '../icons/rainyIcon';
+import ButtonSunny from '../icons/sunnyIcon';
+
+import ButtonRunningMan from '../icons/runningManIcon';
+
+import ButtonAdvicePage from '../icons/advicePageIcon';
+import ButtonMapPage from '../icons/mapPageIcon';
 ////
 
 export default class Iphone extends Component {
@@ -37,6 +53,7 @@ export default class Iphone extends Component {
 		super(props);
 		// temperature state
 		this.state.temp = "";
+		this.state.precipitationMainIcon = true;
 		// button display state
 		this.setState({
 			display: true,
@@ -50,20 +67,36 @@ export default class Iphone extends Component {
 
 			windSpeedMainIcon: false,
 			feelsLikeMainIcon: false,
-			humidityMainIcon: false
+			feelsLikeMainTextIcon: false,
+			humidityMainIcon: false,
+
+			runningManMainIcon: false,
+			precipitationMainIcon: false,
+
+			cloudyMainIcon: false,
+			rainyMainIcon: false,
+			sunnyMainIcon: false,
+
+			advicePageMainIcon: false,
+			mapPageMainIcon: false
 
 		});
-
 	}
+
+
 
 
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+
+		//const cloudyStyles = this.state.precipitationMainIcon ? `${styles.precipitationIcon} ${styles.filled}` : style.precipitationIcon;
 		// display all weather data
+
+
 		return (
-			<div class={style.container}>
+			<div class={style.containerCloud}>
 				<div class={style.header}>
 					<div class={style.city}>{this.state.displayLocation}</div>
 					<div class={style.button2_container}>
@@ -78,11 +111,14 @@ export default class Iphone extends Component {
 					<div class={style.days}>{this.state.day}</div>
 					<div class={style.pt}>
 						<div class={style.temperature}>{this.state.displayTemperature}</div>
-						<div class={style.precipitation}>{this.state.displayPrecipitation_mm}</div>
+						<span class={style.runningManIcon}>{this.state.runningManMainIcon ? <ButtonRunningMan clickFunction={ this.doNothing }/> : null}</span>
+					</div>
+					<div>
+						<span class={style.precipitation}>{this.state.displayPrecipitation_mm}</span>
+						<span class={style.precipitationIcon}>{this.state.cloudyMainIcon ? <ButtonCloudy clickFunction={ this.doNothing }/> : null}</span>
 					</div>
 					<div></div>
 					<div class={style.precipitationIcon}>{this.state.displayConditionIcon}</div>
-
 					<div class={style.conditionText}>{this.state.displayRecommendation}</div>
 					<div class={style.wfhIcons}>
 						<span class={style.windSpeedIcon}>{ this.state.windSpeedMainIcon ? <ButtonWindSpeed clickFunction={ this.doNothing }/> : null}</span>
@@ -94,13 +130,15 @@ export default class Iphone extends Component {
 						<div class={style.feelsLike}>{this.state.displayFeelsLike}</div>
 						<div class={style.humidity}>{this.state.displayHumidity}</div>
 					</div>
-					<div>
-						<div></div>
-						<div></div>
+					<div class={style.wfhText}>
+						<span class={style.windSpeedText}>{this.state.displayWindSpeedText}</span>
+						<span class={style.feelsLikeText}>{ this.state.feelsLikeMainTextIcon ? <ButtonFeelsLikeText clickFunction={ this.doNothing }/> : null}</span>
+						<span class={style.humidityText}>{this.state.displayHumidityText}</span>
 					</div>
-				</div>
-				<div>
-					<span></span>
+					<div class={style.pageNavButton}>
+						<span class={style.adviceButton}>{ this.state.advicePageMainIcon ? <ButtonAdvicePage clickFunction={ this.doNothing }/ > : null }</span>
+						<span class={style.mapButton}>{ this.state.mapPageMainIcon ? <ButtonMapPage clickFunction={ this.doNothing }/ > : null }</span>
+					</div>
 				</div>
 				<div class= { style_iphone.container }>
 	 				{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }
@@ -120,7 +158,7 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via apixu
 	fetchCurrentWeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -139,7 +177,18 @@ export default class Iphone extends Component {
 
 			windSpeedMainIcon: true,
 			feelsLikeMainIcon: true,
-			humidityMainIcon: true
+			feelsLikeMainTextIcon: true,
+			humidityMainIcon: true,
+
+			runningManMainIcon: true,
+			precipitationMainIcon: true,
+
+			cloudyMainIcon: true,
+			rainyMainIcon: true,
+			sunnyMainIcon: true,
+
+			advicePageMainIcon: true,
+			mapPageMainIcon: true
 
 		});
 	}
@@ -160,8 +209,6 @@ export default class Iphone extends Component {
 		var feelsLike = parsed_json['current']['feelslike_c'];
 		var date = parsed_json['current']['last_updated'];
 		var date_epoch = parsed_json['current']['last_updated_epoch'];
-
-
 
 		var dd = date.substring(8,10);
 		var mm = date.substring(5,7);
@@ -194,13 +241,16 @@ export default class Iphone extends Component {
 		this.setState({
 			day: d + " " + ddmmyyyy,
 			displayLocation: location,
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: temperature + " " + String.fromCharCode(176),
+			displayTemperature: temperature + String.fromCharCode(176),
 			displayWindSpeed: windSpeed + " " + "mph",
 			displayHumidity: humidity + " " + "%",
 			displayFeelsLike: feelsLike + String.fromCharCode(176),
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like"
 			//dayOfWeekButtonDay2: true
 		});
 	}
@@ -209,7 +259,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 2
 	fetchForecastDay2WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		console.log("I am Ebube");
 		$.ajax({
 			url: url,
@@ -220,7 +270,8 @@ export default class Iphone extends Component {
 		this.setState({
 			display: false,
 			dayOfWeekButtonDay2: true,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
@@ -271,13 +322,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -286,7 +340,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 3
 	fetchForecastDay3WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -295,7 +349,8 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
@@ -346,13 +401,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -361,7 +419,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 4
 	fetchForecastDay4WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -370,7 +428,8 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
@@ -421,13 +480,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -436,7 +498,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 5
 	fetchForecastDay5WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -445,14 +507,15 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
 	parseForecastDay5WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 4];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][4]['day']['maxtemp_c'];
@@ -496,13 +559,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -511,7 +577,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 6
 	fetchForecastDay6WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -520,7 +586,8 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
@@ -571,13 +638,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -586,7 +656,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 7
 	fetchForecastDay7WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -595,7 +665,8 @@ export default class Iphone extends Component {
 		})
 		this.setState({
 			display: false,
-			feelsLikeMainIcon: false
+			feelsLikeMainIcon: false,
+			feelsLikeMainTextIcon: false
 		});
 	}
 
@@ -647,13 +718,16 @@ export default class Iphone extends Component {
 		}
 
 		this.setState({
-			displayPrecipitation_mm: precipitation_mm,
+			displayPrecipitation_mm: precipitation_mm + "mm",
 			displayRecommendation: cText,
 			displayConditionIcon: img,
-			displayTemperature: avgTemperature + " " + String.fromCharCode(176),
+			displayTemperature: avgTemperature + String.fromCharCode(176),
 			displayWindSpeed: maxWindSpeed + " " + "mph",
 			displayHumidity: avgHumidity + " " + "%",
 			displayFeelsLike: "",
+			displayWindSpeedText: "Wind speed",
+			displayHumidityText: "Humidity",
+			displayFeelsLikeText: "Feels like",
 			day: d + " " + ddmmyyyy
 		})
 	}
@@ -692,7 +766,7 @@ CALCULATE DISTANCE BETWEEN TWO POINTS USING LATITUDE AND LONGITUDE
 
 
 /*
-CREATE IMAGE FUNCTION foro all icons
+CREATE IMAGE FUNCTION for all icons
 */
 function createImage(src)
 {
@@ -700,3 +774,11 @@ function createImage(src)
 	img.src = src;
 	return img;
 }
+
+
+
+
+
+//OLD API KEY: 195354be928a41dd879144555172002
+//NEW API KEY: 7d6918de9f26494b9b102209170903
+//NEW API KEY: b4536f262c464173b93200145172002
