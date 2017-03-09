@@ -29,6 +29,10 @@ import ButtonDay7 from '../day7Button';
 import ButtonWindSpeed from '../icons/windSpeedIcon';
 import ButtonFeelsLike from '../icons/feelsLikeIcon';
 import ButtonHumidity from '../icons/humidityIcon';
+
+import ButtonCloudy from '../icons/cloudyIcon';
+import ButtonRainy from '../icons/rainyIcon';
+import ButtonSunny from '../icons/sunnyIcon';
 ////
 
 export default class Iphone extends Component {
@@ -37,6 +41,7 @@ export default class Iphone extends Component {
 		super(props);
 		// temperature state
 		this.state.temp = "";
+		this.state.precipitationMainIcon = true;
 		// button display state
 		this.setState({
 			display: true,
@@ -50,20 +55,98 @@ export default class Iphone extends Component {
 
 			windSpeedMainIcon: false,
 			feelsLikeMainIcon: false,
-			humidityMainIcon: false
+			humidityMainIcon: false,
+
+			precipitationMainIcon: false
 
 		});
-
+		console.log("hello world its me " + latitudeLongitude);//testing
 	}
+
+
 
 
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+
+		//const cloudyStyles = this.state.precipitationMainIcon ? `${styles.precipitationIcon} ${styles.filled}` : style.precipitationIcon;
 		// display all weather data
+
+		// console.log("test testing test");
+		//
+		//
+		// var backgroundImage;
+		//
+		// var currentCondition;
+		// var day2Condition;
+		// var day3Condition;
+		// var day4Condition;
+		// var day5Condition;
+		// var day6Condition;
+		// var day7Condition;
+		//
+		// $.getJSON("http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=London&days=7", function(json)
+		// {
+		// 	currentCondition = (json['current']['condition']['text']).toLowerCase();
+		// 	day2Condition = (json['forecast']['forecastday'][1]['day']['condition']['text']).toLowerCase();
+		// 	day3Condition = (json['forecast']['forecastday'][2]['day']['condition']['text']).toLowerCase();
+		// 	day4Condition = (json['forecast']['forecastday'][3]['day']['condition']['text']).toLowerCase();
+		// 	day5Condition = (json['forecast']['forecastday'][4]['day']['condition']['text']).toLowerCase();
+		// 	day6Condition = (json['forecast']['forecastday'][5]['day']['condition']['text']).toLowerCase();
+		// 	day7Condition = (json['forecast']['forecastday'][6]['day']['condition']['text']).toLowerCase();
+		// 	console.log(json);
+		// 	console.log("1: " + currentCondition);
+		// 	console.log("2: " + day2Condition);
+		// 	console.log("3: " + day3Condition);
+		// 	console.log("4: " + day4Condition);
+		// 	console.log("5: " + day5Condition);
+		// 	console.log("6: " + day6Condition);
+		// 	console.log("7: " + day7Condition);
+		//
+		// 	var precipitationMainIcon = true;
+		//
+		// 	if((currentCondition.includes("sun"))|(currentCondition.includes("clear"))|(currentCondition.includes("shin"))|(currentCondition.includes("dry")))
+		// 	{
+		// 		backgroundImage = (<span class={style.containerSun}>{this.state.sunBackgroundMainImage}</span>)
+		// 	}
+		// 	else if((currentCondition.includes("rain"))|(currentCondition.includes("drizzle"))|(currentCondition.includes("storm"))|(currentCondition.includes("wet"))|(currentCondition.includes("shower")))
+		// 	{
+		// 		backgroundImage = (<span class={style.containerRain}>{this.state.rainBackgroundMainImage}</span>)
+		// 	}
+		// 	else if((currentCondition.includes("snow")))
+		// 	{
+		// 		backgroundImage = (<span class={style.containerSun}>{this.state.cloudBackgroundMainImage}</span>)
+		// 	}
+		// 	else
+		// 	{
+		// 		//var img = createImage("../components/Design/weatherForecast/cloudy.png");
+		// 		//backgroundImage  = img;
+		// 		backgroundImage = "Hello World";
+		// 		console.log("qmul qmul");
+		// 	}
+		//
+		// });
+
+		// var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=London&days=7";
+		// $.ajax({
+		// 	url: url,
+		// 	dataType: "json",
+		// 	success: this.testDataResponse,
+		// 	error: function(req, err){console.log("API call failed " + err);}
+		// })
+		//
+		// function testDataResponse = (parsed_json) =>
+		// {
+		// 	console.log("gui work");
+		// }
+
+
+
+
 		return (
-			<div class={style.container}>
+			<div class={style.containerCloud}>
 				<div class={style.header}>
 					<div class={style.city}>{this.state.displayLocation}</div>
 					<div class={style.button2_container}>
@@ -82,7 +165,6 @@ export default class Iphone extends Component {
 					</div>
 					<div></div>
 					<div class={style.precipitationIcon}>{this.state.displayConditionIcon}</div>
-
 					<div class={style.conditionText}>{this.state.displayRecommendation}</div>
 					<div class={style.wfhIcons}>
 						<span class={style.windSpeedIcon}>{ this.state.windSpeedMainIcon ? <ButtonWindSpeed clickFunction={ this.doNothing }/> : null}</span>
@@ -99,9 +181,6 @@ export default class Iphone extends Component {
 						<div></div>
 					</div>
 				</div>
-				<div>
-					<span></span>
-				</div>
 				<div class= { style_iphone.container }>
 	 				{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchCurrentWeatherData }/ > : null }
 		 		</div>
@@ -112,7 +191,7 @@ export default class Iphone extends Component {
 
 	doNothing = () =>
 	{
-
+		console.log("me me me");
 	}
 
 
@@ -120,7 +199,7 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via apixu
 	fetchCurrentWeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -139,7 +218,9 @@ export default class Iphone extends Component {
 
 			windSpeedMainIcon: true,
 			feelsLikeMainIcon: true,
-			humidityMainIcon: true
+			humidityMainIcon: true,
+
+			precipitationMainIcon: true
 
 		});
 	}
@@ -209,7 +290,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 2
 	fetchForecastDay2WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		console.log("I am Ebube");
 		$.ajax({
 			url: url,
@@ -286,7 +367,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 3
 	fetchForecastDay3WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -361,7 +442,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 4
 	fetchForecastDay4WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -436,7 +517,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 5
 	fetchForecastDay5WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -452,7 +533,7 @@ export default class Iphone extends Component {
 	parseForecastDay5WeatherDataResponse = (parsed_json) =>
 	{
 		var today = new Date();
-		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay() + 4];
 
 		var maxTemperature = parsed_json['forecast']['forecastday'][4]['day']['maxtemp_c'];
@@ -511,7 +592,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 6
 	fetchForecastDay6WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -586,7 +667,7 @@ export default class Iphone extends Component {
 	////FORECAST DAY 7
 	fetchForecastDay7WeatherData = () =>
 	{
-		var url = "http://api.apixu.com/v1/forecast.json?key=195354be928a41dd879144555172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -686,13 +767,20 @@ function error(err)
 };
 
 
+////CONDENSED VERSION OF GEOLOCATION
+// var latitudeLongitude;
+// navigator.geolocation.watchPosition(success);
+// function success(pos) {
+// 	latitudeLongitude = pos.coords.latitude + "," + pos.coords.longitude;
+// };
+
 /*
 CALCULATE DISTANCE BETWEEN TWO POINTS USING LATITUDE AND LONGITUDE
 */
 
 
 /*
-CREATE IMAGE FUNCTION foro all icons
+CREATE IMAGE FUNCTION for all icons
 */
 function createImage(src)
 {
@@ -700,3 +788,21 @@ function createImage(src)
 	img.src = src;
 	return img;
 }
+
+
+
+
+
+
+function parseWeatherConditionDataResponse(parsed_json)
+{
+	console.log("parsing");
+}
+
+
+
+
+
+//OLD API KEY: 195354be928a41dd879144555172002
+//NEW API KEY: 7d6918de9f26494b9b102209170903
+//NEW API KEY: b4536f262c464173b93200145172002
