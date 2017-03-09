@@ -2,7 +2,7 @@
 import { h, Component } from 'preact';
 
 // import required Components from 'components/'
-import Iphone from './iphone';
+import AdvicePage from './AdvicePage';
 import Ipad from './ipad';
 
 export default class App extends Component {
@@ -36,7 +36,7 @@ export default class App extends Component {
 		else {
 			return (
 				<div id="app">
-					<Iphone/ >
+					<Advice/ >
 				</div>
 			);
 		}

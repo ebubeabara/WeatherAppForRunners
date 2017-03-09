@@ -21,7 +21,7 @@ export default class GymPark_Button extends Component{
 		return (
 			<div>
 				<button class="recButton " onClick={clickFunction}>
-					recommendation
+					Advice
 				</button>
 			</div>
 		);
