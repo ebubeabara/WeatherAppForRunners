@@ -98,7 +98,7 @@ export default class MainPage extends Component {
 	//no action Method for all icon Components
 	doNothing = () =>{}
 
-	// a call to fetch CURRENT DAY weather data via apixu api
+	// a method call to fetch CURRENT DAY weather data from apixu api
 	fetchCurrentWeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -115,9 +115,10 @@ export default class MainPage extends Component {
 		});
 	}
 
-	//display weather data on render method
+	//display current day weather data on render method
 	parseCurrentWeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var location = parsed_json['location']['name'];
 		var precipitation_mm = parsed_json['current']['precip_mm'];
 		var conditionText = (parsed_json['current']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
@@ -147,7 +148,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 2
+	// a method call to fetch FORECAST DAY 2 weather data from apixu api
 	fetchForecastDay2WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -164,17 +165,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next days weather data on render method
 	parseForecastDay2WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][1]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][1]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][1]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][1]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][1]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][1]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][1]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 1];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 1]; //get next day date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
@@ -191,7 +194,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 3
+	// a method call to fetch FORECAST DAY 3 weather data from apixu api
 	fetchForecastDay3WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -208,17 +211,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next 2 days weather data on render method
 	parseForecastDay3WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][2]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][2]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][2]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][2]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][2]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][2]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][2]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 2];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 2]; //get next  2 days date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
@@ -235,7 +240,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 4
+	// a method call to fetch FORECAST DAY 4 weather data from apixu api
 	fetchForecastDay4WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -252,17 +257,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next 3 days weather data on render method
 	parseForecastDay4WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][3]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][3]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][3]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][3]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][3]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][3]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][3]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 3];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 3]; //get next 3 days date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
@@ -279,7 +286,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 5
+	// a method call to fetch FORECAST DAY 5 weather data from apixu api
 	fetchForecastDay5WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -296,17 +303,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next 4 days weather data on render method
 	parseForecastDay5WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][4]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][4]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][4]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][4]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][4]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][4]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][4]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 4];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 4]; //get next 4 days date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
@@ -323,7 +332,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 6
+	// a method call to fetch FORECAST DAY 6 weather data from apixu api
 	fetchForecastDay6WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -340,17 +349,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next 5 days weather data on render method
 	parseForecastDay6WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][5]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][5]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][5]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][5]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][5]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][5]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][5]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 5];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 5]; //get next 5 days date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
@@ -367,7 +378,7 @@ export default class MainPage extends Component {
 	}
 
 
-	////FORECAST DAY 7
+	// a method call to fetch FORECAST DAY 7 weather data from apixu api
 	fetchForecastDay7WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
@@ -384,17 +395,19 @@ export default class MainPage extends Component {
 		});
 	}
 
+	//display next 6 days weather data on render method
 	parseForecastDay7WeatherDataResponse = (parsed_json) =>
 	{
+		//store weather data from api JSON file in variables
 		var avgTemperature = parsed_json['forecast']['forecastday'][6]['day']['avgtemp_c'];
 		var maxWindSpeed = parsed_json['forecast']['forecastday'][6]['day']['maxwind_mph'];
 		var precipitation_mm = parsed_json['forecast']['forecastday'][6]['day']['totalprecip_mm'];
 		var avgHumidity = parsed_json['forecast']['forecastday'][6]['day']['avghumidity'];
-		var conditionText = (parsed_json['forecast']['forecastday'][6]['day']['condition']['text']).toLowerCase();
+		var conditionText = (parsed_json['forecast']['forecastday'][6]['day']['condition']['text']).toLowerCase(); //coverts text to lower case for 'display recommendation if statement'
 		var date = parsed_json['forecast']['forecastday'][6]['date'];
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var d = weekday[new Date().getUTCDay() + 6];
-		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4);
+		var d = weekday[new Date().getUTCDay() + 6]; //get next 6 days date
+		var ddmmyyyy = date.substring(8,10) + "-" + date.substring(5,7) + "-" + date.substring(0,4); //rearrange api date to UK format
 
 		if((conditionText.includes("sun"))|(conditionText.includes("clear"))|(conditionText.includes("shin"))|(conditionText.includes("dry")))
 		{var conditionText = "Sunny day. Check out our park recommendations for running";}
