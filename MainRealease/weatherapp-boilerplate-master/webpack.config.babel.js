@@ -42,20 +42,20 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				exclude: path.resolve(__dirname, 'src'),
-				loader: 'source-map'
+				loader: 'source-map-loader'
 			}
 		],
 		loaders: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: 'babel'
+				loader: 'babel-loader'
 			},
 			{
 				// Transform our own .(less|css) files with PostCSS and CSS-modules
 				test: /\.(less|css)$/,
 				include: [path.resolve(__dirname, 'src/components')],
-				loader: ExtractTextPlugin.extract('style?singleton', [
+				loader: ExtractTextPlugin.extract('style-loader?singleton', [
 					`css-loader?modules&importLoaders=1&sourceMap=${CSS_MAPS}`,
 					'postcss-loader',
 					`less-loader?sourceMap=${CSS_MAPS}`
@@ -64,9 +64,9 @@ module.exports = {
 			{
 				test: /\.(less|css)$/,
 				exclude: [path.resolve(__dirname, 'src/components')],
-				loader: ExtractTextPlugin.extract('style?singleton', [
+				loader: ExtractTextPlugin.extract('style-loader?singleton', [
 					`css?sourceMap=${CSS_MAPS}`,
-					`postcss`,
+					`postcss-loader`,
 					`less?sourceMap=${CSS_MAPS}`
 				].join('!'))
 			},

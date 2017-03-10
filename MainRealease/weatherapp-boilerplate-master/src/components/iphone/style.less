@@ -1,53 +1,15 @@
 @import '~style/helpers';
 
-
 .container {
 	display: flex;
 	flex-direction: column;
-	color: #fff;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 5px;
-	margin: 0 auto;
-}
-.containerRain{
-	display: flex;
-	flex-direction: column;
-	background-image: url('../../components/Design/BackGround/RainBackground.png');
-	//background-color: #800080;
+	background-image: url('../../assets/backgrounds/clear-iphone.jpg');
 	color: #fff;
 	width: 414px;
 	height: 736px;
 	text-align: center;
 	padding-top: 80px;
 	margin: 0 auto;
-	margin-top: -40px;
-}
-.containerCloud{
-	display: flex;
-	flex-direction: column;
-	background-image: url('../../components/Design/BackGround/CloudyBackGround.png');
-	color: #fff;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 80px;
-	margin: 0 auto;
-	margin-top: -40px;
-}
-.containerSun{
-	display: flex;
-	flex-direction: column;
-	background-image: url('../../components/Design/BackGround/sunnyNewBack.png');
-	//background-color: #800080;
-	color: #fff;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 80px;
-	margin: 0 auto;
-	margin-top: -40px;
 }
 .header {
 	display: flex;
@@ -56,10 +18,6 @@
 }
 .details {
 	flex: 4;
-}
-.days {
-	margin-top: 30px;
-	margin-bottom: -30px;
 }
 .city {
 	flex: 1;
@@ -70,187 +28,12 @@
 	flex: 1;
 	font-size: 1em;
 }
-.conditionText {
-	display: flex;
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	flex-direction: column;
-	font-weight: bold;
-}
-.pt {
-	display: flex;
-	margin-top: 60px;
-	//flex-direction: column;
-	//flex: 1;
-	//text-align: center;
-}
-.precipitation {
-	display: flex;
-	//flex: 2;
-	//margin-top: 60px;
-	margin-bottom: -100px;
-	color: #fff;
-	//text-align: right;
-	margin-top: 100px;
-	margin-left: 190px;
-	font-size: 1em;
-	font-weight: 300;
-	letter-spacing: 0px;
-}
-.precipitationIcon img {
-	//display: flex;
-	flex: 2;
-	//justify-content: center;
-	//padding-top: 100px;
-	//padding-left: 10px;
-	//border: 0px;
-	margin-bottom: 150px;
-	margin-top: 50px;
-	margin-left: 50px;
-	//background-image: url('../../components/Design/weatherForecast/cloudy.png');
-	//width: 201px;
-	//height: 170px;
-}
-.aboveRecommendationSpace {
-	display: flex;
-	padding-top: 30px;
-	padding-bottom: 0px;
-}
 .temperature {
 	flex: 2;
-	margin-top: -15px;
-	margin-left: 60px;
-	margin-bottom: 30px;
-	color: #fff;
-	//text-align: left;
-	margin-right: 70px;
-	font-size: 5em;
+	margin-top: 0;
+	font-size: 4.8em;
 	font-weight: 300;
-	letter-spacing: -5px;
-}
-.wfh {
-	display: flex;
-	margin-top: 40px;
-	flex-direction: row;
-}
-.wfhText {
-	display: flex;
-	margin-top: 25px;
-	flex-direction: row;
-}
-.wfhIcons {
-	display: flex;
-	margin-top: 60px;
-	flex-direction: row;
-}
-.windSpeed {
-	flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	color: #fff;
-	//text-align: right;
-	margin-left: 0px;
-	font-size: 1.5em;
-	font-weight: 300;
-	letter-spacing: -2px;
-}
-.windSpeedText {
-	//flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	color: #fff;
-	//text-align: right;
-	margin-left: 40px;
-	margin-right: -20px;
-	font-size: 0.7em;
-	font-weight: 300;
-	letter-spacing: 0px;
-}
-.windSpeedIcon {
-	flex: 2;
-	margin-bottom: -30px;
-	margin-top: -30px;
-	margin-left: 40px;
-
-	//width: 70px;
-	//height: 70px;
-	//background-image: url('../../components/Design/SmallIcon/WindNew.png');
-}
-.humidity {
-	flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	color: #fff;
-	//text-align: right;
-	margin-right: 0px;
-	font-size: 1.5em;
-	font-weight: 300;
-	letter-spacing: -2px;
-}
-.humidityText {
-	flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	margin-left: -80px;
-	color: #fff;
-	//text-align: right;
-	//margin-left: -15px;
-	font-size: 0.7em;
-	font-weight: 300;
-	letter-spacing: 0px;
-}
-.humidityIcon {
-	flex: 2;
-	margin-bottom: -30px;
-	margin-top: -30px;
-	margin-right: -35px;
-
-	width: 70px;
-	height: 70px;
-	//background-image: url('../../components/Design/SmallIcon/humidityNew.png');
-}
-.feelsLike {
-	flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	color: #fff;
-	//text-align: right;
-	//margin-left: 70px;
-	font-size: 1.5em;
-	font-weight: 300;
-	letter-spacing: -2px;
-}
-.feelsLikeText {
-	flex: 2;
-	//margin-top: 60px;
-	margin-bottom: 30px;
-	padding-left: 122px;
-	padding-right: -100px;
-	//color: #fff;
-	//text-align: right;
-	margin-left: -15px;
-	//font-size: 0.7em;
-	//font-weight: 300;
-	//letter-spacing: 0px;
-}
-.feelsLikeIcon {
-	flex: 2;
-	margin-bottom: 30px;
-	margin-top: -30px;
-	margin-left: -10px;
-
-	width: 70px;
-	height: 70px;
-	//background-image: url('../../components/Design/SmallIcon/feelsLike.png');
-}
-.runningManIcon {
-	//display: flex;
-	flex: 2;
-	margin-left: 70px;
-	//width: 80px;
-	//height: 80px;
+	letter-spacing: -12px;
 }
 .filled:after {
 	content: "°";
@@ -260,54 +43,4 @@
 	display: inline-block;
 	padding-top: 10px;
 	vertical-align: top;
-}
-.pageNavButton {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	margin-top: 50px;
-}
-.adviceButton {
-	display: flex;
-	padding-right: 20px;
-}
-.mapButton {
-	display: flex;
-	padding-left: 20px;
-}
-.button2_container {
-    display: flex;
-    justify-content: center;
-	margin-top: 10px;
-    margin-bottom: 30px;
-	flex-direction: row;
-	// background-image: url('../../assets/backgrounds/clear-iphone.jpg');
-	// background-color: #800080;
-	// color: #fff;
-	// width: 50px;
-	// height: 50px;
-
-}
-.button2_container button {
-
-	margin: 0 auto;
-	font-size: 1.5rem;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-left: 5px;
-	margin-right: 5px;
-	//padding: 1rem 2rem;
-	display: block;
-	background: #6DA4CC;
-	border: 1px solid #fff;
-	color: #fff;
-	font-weight: 300;
-	border-radius: 3px;
-	transition: all 0.3s ease-in-out;
-	margin-bottom: 20px;
-}
-.button2_container button:hover {
-  background: #fff;
-  color: #6DA4CC;
-  border: 1px solid transparent;
 }
