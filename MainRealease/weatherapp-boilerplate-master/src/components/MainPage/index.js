@@ -84,8 +84,8 @@ export default class MainPage extends Component {
 						<span class={style.humidityText}>{this.state.displayHumidityText}</span>
 					</div>
 					<div class={style.pageNavButton}>
-						<a href={'localhost/iphone/adv'}><span class={style.adviceButton}><ButtonAdvicePage/></span></a>
-						<a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
+						<a href={'/iphone/adv'}><span class={style.adviceButton}><ButtonAdvicePage/></span></a>
+						<a href={'/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
 					</div>
 				</div>
 				<div class= { style_iphone.container }>
