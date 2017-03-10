@@ -13,26 +13,29 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 //import the Button2 component
-import Button2 from '../button2';
+//import Button2 from '../button2';
 //import the Gym/Park title
 import GymPark_Button from '../recButton';
+import ButtonAdvicePage from '../icons/advicePageIcon';
+import ButtonMapPage from '../icons/mapPageIcon';
+import ButtonHomePage from '../icons/homePageIcon';
 
 
 export default class AdvicePage extends Component {
 //var Iphone = React.createClass({
 
-    
+
 	// a constructor with initial set states
 	constructor(props){
 		super(props);
 		// temperature state
-		
+
 		// button display state
         this.state.showRecs = true;
 	}
 
-    
-    //this is the api to get the current weather 
+
+    //this is the api to get the current weather
    fetchCurrentWeatherData = () =>
         {
             var url = "http://api.apixu.com/v1/forecast.json?key=98f84e1e0ddc449f8c7223104170703&q=" + latitudeLongitude + "&days=7";
@@ -52,15 +55,15 @@ export default class AdvicePage extends Component {
 		var today = new Date();
 		var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var d = weekday[today.getUTCDay()];
-        var conditionText = parsed_json['current']['condition']['text'];	
+        var conditionText = parsed_json['current']['condition']['text'];
         var showClothesInfo="";
         var gymParkTitle="";
-        var clothesTitle="Whats recommended?"      
+        var clothesTitle="Whats recommended?"
         var cText = conditionText.toLowerCase();
 		var displayRecommendation = "";
-        
+
         //initilises the vairiables depending on the weather.
-        
+
 		if((cText.includes("sun"))|(cText.includes("clear"))|(cText.includes("shin"))|(cText.includes("dry")))
             {
                 showClothesInfo="Its a great day, so wear something lightweight and dont forget your water bottle!";
@@ -82,27 +85,27 @@ export default class AdvicePage extends Component {
                 gymParkTitle="Park";
             }
 
-        
 
-        this.setState({		
+
+        this.setState({
 			displayConditionText: conditionText,
             showclothesInfo: showClothesInfo,
             showGymParkTitle: gymParkTitle,
-            showClothesTitle: clothesTitle,	
+            showClothesTitle: clothesTitle,
 		})
 	}
-    
-    
+
+
 	// the main render method for the iphone component
 	render() {
         var userMessage;
-        
+
         if(this.state.showGymParkTitle == "Gym"){
-            userMessage = 
+            userMessage =
             <div class={style.backgroundGym}>
                 //show title
                 <h1>{this.state.showGymParkTitle}</h1>
-            
+
                 <div class={style.gymLogo}>
                 <img src={'../../assets/design/gymLogo.png'} height={100}/>
                 </div>
@@ -123,7 +126,7 @@ export default class AdvicePage extends Component {
                         </center>
                     </div>
                 </div>
-                                
+
                 //show info
                 <div class={style.recsInfo}>
                     <div class={style.infoText}>
@@ -132,18 +135,18 @@ export default class AdvicePage extends Component {
                     </div>
                 </div>
                 //show buttons
-                <div class= { style_iphone.container }>
-                    <Button/>
-                    <Button2/>
+                <div class={style.pageNavButton}>
+                    <a href={'localhost/iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
+                    <a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
                 </div>
 
             </div>
         }
         if(this.state.showGymParkTitle == "Park"){
-            userMessage = 
+            userMessage =
             <div class={style.backgroundPark}>
                 <h1>{this.state.showGymParkTitle}</h1>
-            
+
                 <div class={ style.gymLogo }>
                     <img src={'../../assets/design/parkLogo.png'} height={300}/>
                 </div>
@@ -151,7 +154,7 @@ export default class AdvicePage extends Component {
                 <div class={style.infoTextBackground}>
                     <div class={style.infoText}>
                         <center><h3>Address: London W2 2UH </h3>
-                            <h4>  Hours: 
+                            <h4>  Hours:
                             Monday	5am–12am
                             Tuesday	5am–12am
                             Wednesday	5am–12am
@@ -171,15 +174,15 @@ export default class AdvicePage extends Component {
                         <h4>{this.state.showclothesInfo}</h4>
                     </div>
                 </div>
-                
-                <div class= { style_iphone.container }>
-                    <Button/>
-                    <Button2/>
+
+                <div class={style.pageNavButton}>
+                    <a href={'localhost/iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
+                    <a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
                 </div>
-            
+
             </div>
             }
-        
+
             //main advice button
             return (
                 <div class={ style.container}>
@@ -192,11 +195,11 @@ export default class AdvicePage extends Component {
 
                     </div>
 
-                </div> 
+                </div>
             );
         }
     }
-    
+
     var lat;
     var lon;
     var latitudeLongitude;

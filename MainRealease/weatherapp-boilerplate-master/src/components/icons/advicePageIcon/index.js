@@ -13,7 +13,7 @@ export default class ButtonAdvicePage extends Component {
 		}
 		return (
 			<div class={advicePageIconStyle.container}>
-				<img onClick={clickFunction}/>
+				<img/>
 			</div>
 		);
 	}

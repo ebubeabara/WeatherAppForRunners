@@ -11,10 +11,6 @@ import Button from '../button';
 import MapPage from '../MapPage';
 import AdvicePage from '../AdvicePage';
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
-
 //importing days of the week and page navigation button Components
 import ButtonDay1 from '../day1Button';
 import ButtonDay2 from '../day2Button';
@@ -88,8 +84,8 @@ export default class MainPage extends Component {
 						<span class={style.humidityText}>{this.state.displayHumidityText}</span>
 					</div>
 					<div class={style.pageNavButton}>
-						<span class={style.adviceButton}>{ this.state.advicePageMainIcon ? <ButtonAdvicePage clickFunction={ this.navigateToAdvicePage }/ > : null }</span>
-						<span class={style.mapButton}>{ this.state.mapPageMainIcon ? <ButtonMapPage clickFunction={ this.navigateToMapPage }/ > : null }</span>
+						<a href={'localhost/iphone/adv'}><span class={style.adviceButton}><ButtonAdvicePage/></span></a>
+						<a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
 					</div>
 				</div>
 				<div class= { style_iphone.container }>
@@ -102,30 +98,11 @@ export default class MainPage extends Component {
 	//no action Method for all icon Components
 	doNothing = () =>{}
 
-	//method call navigates from home to advice page
-	navigateToAdvicePage = () => {
-// 		const proto = Object.create(HTMLElement.prototype, {
-//   		attachedCallback: {
-//     	value: function() {
-//       	const mountPoint = document.createElement('span');
-//       	this.createShadowRoot().appendChild(mountPoint);
-//
-//       	const name = this.getAttribute('name');
-//       	const url = 'https://www.google.co.uk';
-//       	ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
-//     }
-//   }
-// });
-	}
-
-	//method call navigates from home to map page
-	navigateToMapPage = () => {}
-
 	// a call to fetch CURRENT DAY weather data via apixu api
 	fetchCurrentWeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -174,7 +151,7 @@ export default class MainPage extends Component {
 	fetchForecastDay2WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -218,7 +195,7 @@ export default class MainPage extends Component {
 	fetchForecastDay3WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -262,7 +239,7 @@ export default class MainPage extends Component {
 	fetchForecastDay4WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -306,7 +283,7 @@ export default class MainPage extends Component {
 	fetchForecastDay5WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -350,7 +327,7 @@ export default class MainPage extends Component {
 	fetchForecastDay6WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",
@@ -394,7 +371,7 @@ export default class MainPage extends Component {
 	fetchForecastDay7WeatherData = () =>
 	{
 		//uses apixu api and current geolocation of runner as getJSON url
-		var url = "http://api.apixu.com/v1/forecast.json?key=b4536f262c464173b93200145172002&q=" + latitudeLongitude + "&days=7";
+		var url = "http://api.apixu.com/v1/forecast.json?key=18962dba91394d47b6b132528170903&q=" + latitudeLongitude + "&days=7";
 		$.ajax({
 			url: url,
 			dataType: "json",

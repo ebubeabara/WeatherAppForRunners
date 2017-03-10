@@ -13,7 +13,7 @@ export default class ButtonMapPage extends Component {
 		}
 		return (
 			<div class={mapPageIconStyle.container}>
-				<img onClick={clickFunction}/>
+				<img/>
 			</div>
 		);
 	}
