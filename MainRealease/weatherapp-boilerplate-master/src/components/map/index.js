@@ -169,8 +169,6 @@ export default class Map extends Component {
     // Function parseWeatherResult of Map component:
     //
     parseWeatherResult = (result) => {
-        //var jsonResult = JSON.parse(result);
-        //console.log(result);
         if(result.list.length > 0) {
             for(var i = 0; i < result.list.length; i++) {
                 this.state.geoJSON.features.push(this.jsonToGeoJSON(result.list[i]))
@@ -198,11 +196,11 @@ export default class Map extends Component {
                 windDegrees: jsonItem.wind.deg,
                 windGust: jsonItem.wind.gust,
                 icon: "http://openweathermap.org/img/w/" + jsonItem.weather[0].icon + ".png",
-                coordinates: [jsonItem.coord.Lon, jsonItem.coord.Lat]
+                coordinates: [jsonItem.coord.lon, jsonItem.coord.lat]
             },
             geometry: {
                 type: "Point",
-                coordinates: [jsonItem.coord.Lon, jsonItem.coord.Lat]
+                coordinates: [jsonItem.coord.lon, jsonItem.coord.lat]
             }
         };
 

@@ -1,10 +1,12 @@
 // import preact
 import { h, render, Component } from 'preact';
-import style from '../iphone/style';
+import style from './style_iphone';
 //import jquery for API calls
 import $ from 'jquery';
 // import other
 import Map from '../map';
+import ButtonAdvicePage from '../icons/advicePageIcon';
+import ButtonHomePage from '../icons/homePageIcon';
 
 export default class MapPage extends Component {
     // Constructor for MapPage component:
@@ -18,8 +20,12 @@ export default class MapPage extends Component {
     render = () => {
         return (
             <div class={style.container}>
-                <div>Weather Map</div>
+                <div class={style.title}>Weather Map</div>
                 <Map />
+                <div class={style.pageNavButton}>
+					<a href={'/iphone/main'}><span class={style.mainButton}><ButtonHomePage/></span></a>
+                    <a href={'/iphone/adv'}><span class={style.adviceButton}><ButtonAdvicePage/></span></a>
+                </div>
             </div>
        );
     }
