@@ -136,8 +136,8 @@ export default class AdvicePage extends Component {
                 </div>
                 //show buttons
                 <div class={style.pageNavButton}>
-                    <a href={'localhost/iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
-                    <a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
+                    <a href={'iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
+                    <a href={'iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
                 </div>
 
             </div>
@@ -176,8 +176,8 @@ export default class AdvicePage extends Component {
                 </div>
 
                 <div class={style.pageNavButton}>
-                    <a href={'localhost/iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
-                    <a href={'localhost/iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
+                    <a href={'iphone/main'}><span class={style.homeButton}><ButtonHomePage/></span></a>
+                    <a href={'iphone/map'}><span class={style.mapButton}><ButtonMapPage/></span></a>
                 </div>
 
             </div>
